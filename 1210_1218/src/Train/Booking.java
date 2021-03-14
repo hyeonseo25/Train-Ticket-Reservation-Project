@@ -91,14 +91,11 @@ public class Booking extends JFrame {
 	}
 
 	public void BookingFrame(Search s1) {
-		
 		setTitle("기차표예매"); // 창 제목 설정
 		setSize(800,800); // 창 크기 설정
 		setResizable(false); // T- 창 크기 조절 o F- 창 크기 조절 x
 		setLocation(600,150); // 창 뜨는 위치 설정
 		setDefaultCloseOperation(EXIT_ON_CLOSE); // 창 꺼지는거
-		
-		
 		
 		JPanel panel = new JPanel();
 		placeButton(s1, panel);
@@ -136,10 +133,9 @@ public class Booking extends JFrame {
         timeButton1.setFont(f1);
         
         timeButton1.addActionListener(new ActionListener() {
-        	
 			public void actionPerformed(ActionEvent a) {
 				if(((s1.getMonth()==today_month)&&(s1.getDay()==today_day))&&(today_time>3)) {
-					s1.setWarningMessage("예매가 마감되었습니다");
+					s1.setWarningMessage("                    예매가 마감되었습니다");
 					s1.warningFrame();
 				}else {
 					time="1";
@@ -166,7 +162,7 @@ public class Booking extends JFrame {
         timeButton2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {
 				if(((s1.getMonth()==today_month)&&(s1.getDay()==today_day))&&(today_time>5)) {
-					s1.setWarningMessage("예매가 마감되었습니다");
+					s1.setWarningMessage("                    예매가 마감되었습니다");
 					s1.warningFrame();
 				}else {
 					time="2";
@@ -193,7 +189,7 @@ public class Booking extends JFrame {
         timeButton3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {
 				if(((s1.getMonth()==today_month)&&(s1.getDay()==today_day))&&(today_time>7)) {
-					s1.setWarningMessage("예매가 마감되었습니다");
+					s1.setWarningMessage("                    예매가 마감되었습니다");
 					s1.warningFrame();
 				}else {
 					time="3";
@@ -220,7 +216,7 @@ public class Booking extends JFrame {
         timeButton4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {
 				if(((s1.getMonth()==today_month)&&(s1.getDay()==today_day))&&(today_time>9)) {
-					s1.setWarningMessage("예매가 마감되었습니다");
+					s1.setWarningMessage("                    예매가 마감되었습니다");
 					s1.warningFrame();
 				}else {
 					time="4";
@@ -247,7 +243,7 @@ public class Booking extends JFrame {
         timeButton5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {
 				if(((s1.getMonth()==today_month)&&(s1.getDay()==today_day))&&(today_time>11)) {
-					s1.setWarningMessage("예매가 마감되었습니다");
+					s1.setWarningMessage("                    예매가 마감되었습니다");
 					s1.warningFrame();
 				}else {
 					time="5";
@@ -274,7 +270,7 @@ public class Booking extends JFrame {
         timeButton6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {
 				if(((s1.getMonth()==today_month)&&(s1.getDay()==today_day))&&(today_time>13)) {
-					s1.setWarningMessage("예매가 마감되었습니다");
+					s1.setWarningMessage("                    예매가 마감되었습니다");
 					s1.warningFrame();
 				}else {
 					time="6";
@@ -301,7 +297,7 @@ public class Booking extends JFrame {
         timeButton7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {
 				if(((s1.getMonth()==today_month)&&(s1.getDay()==today_day))&&(today_time>15)) {
-					s1.setWarningMessage("예매가 마감되었습니다");
+					s1.setWarningMessage("                    예매가 마감되었습니다");
 					s1.warningFrame();
 				}else {
 					time="7";
@@ -328,7 +324,7 @@ public class Booking extends JFrame {
         timeButton8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {
 				if(((s1.getMonth()==today_month)&&(s1.getDay()==today_day))&&(today_time>17)) {
-					s1.setWarningMessage("예매가 마감되었습니다");
+					s1.setWarningMessage("                    예매가 마감되었습니다");
 					s1.warningFrame();
 				}else {
 					time="8";
@@ -356,7 +352,7 @@ public class Booking extends JFrame {
         timeButton9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {
 				if(((s1.getMonth()==today_month)&&(s1.getDay()==today_day))&&(today_time>19)) {
-					s1.setWarningMessage("예매가 마감되었습니다");
+					s1.setWarningMessage("                    예매가 마감되었습니다");
 					s1.warningFrame();
 				}else {
 					time="9";
@@ -411,7 +407,7 @@ public class Booking extends JFrame {
         plusButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {
 				if(seatnum>=4) {
-					s1.setWarningMessage("                    좌석은 4좌석 까지 선택가능합니다.");
+					s1.setWarningMessage("              좌석은 4좌석 까지 선택가능합니다.");
 					s1.warningFrame();
 				}else {
 					seatnum++;
@@ -424,7 +420,7 @@ public class Booking extends JFrame {
         minusButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {
 				if(seatnum<=1) {
-					s1.setWarningMessage("                      최소 좌석은 1좌석 부터입니다.");
+					s1.setWarningMessage("                  최소 좌석은 1좌석 부터입니다.");
 					s1.warningFrame();
 				}else if(time.equals("")){
 					seatnum--;
@@ -440,14 +436,12 @@ public class Booking extends JFrame {
 			}
 		});
         
-        
 		JButton before = new JButton("◀ 이전");
 		before.setBounds(600, 700, 80, 30);
         panel.add(before);
         before.setBackground(Color.white);
         before.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				main.showSearch();
 			}
 		});
@@ -463,7 +457,7 @@ public class Booking extends JFrame {
 					updateDB();
 					PayCheckFrame();
 				}else {
-					s1.setWarningMessage("                                  좌석을 선택하세요.");
+					s1.setWarningMessage("                        좌석을 선택하세요.");
 					s1.warningFrame();
 				}
 			}
@@ -490,20 +484,18 @@ public class Booking extends JFrame {
         panel.add(seat1);
         seat1.setBackground(Color.white);
         seat1.setFont(f1);
-        
        
         seat1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(seat1.isSelected()==true) {
 					if(nowSeatnum>=seatnum) {
 						seat1.setSelected(false);
-						s1.setWarningMessage("                            좌석 수를 초과 하였습니다.");
+						s1.setWarningMessage("                    좌석 수를 초과 하였습니다.");
 						s1.warningFrame();
 					}else {
 						nowSeatnum++;
 						myseat[0] = 1;
 					}
-					
 				}else {
 					nowSeatnum--;
 					myseat[0] = 0;
@@ -522,7 +514,7 @@ public class Booking extends JFrame {
 				if(seat2.isSelected()==true) {
 					if(nowSeatnum>=seatnum) {
 						seat2.setSelected(false);
-						s1.setWarningMessage("                            좌석 수를 초과 하였습니다.");
+						s1.setWarningMessage("                    좌석 수를 초과 하였습니다.");
 						s1.warningFrame();
 					}else {
 						nowSeatnum++;
@@ -548,7 +540,7 @@ public class Booking extends JFrame {
 				if(seat3.isSelected()==true) {
 					if(nowSeatnum>=seatnum) {
 						seat3.setSelected(false);
-						s1.setWarningMessage("                            좌석 수를 초과 하였습니다.");
+						s1.setWarningMessage("                    좌석 수를 초과 하였습니다.");
 						s1.warningFrame();
 					}else {
 						nowSeatnum++;
@@ -573,7 +565,7 @@ public class Booking extends JFrame {
 				if(seat4.isSelected()==true) {
 					if(nowSeatnum>=seatnum) {
 						seat4.setSelected(false);
-						s1.setWarningMessage("                            좌석 수를 초과 하였습니다.");
+						s1.setWarningMessage("                    좌석 수를 초과 하였습니다.");
 						s1.warningFrame();
 					}else {
 						nowSeatnum++;
@@ -598,7 +590,7 @@ public class Booking extends JFrame {
 				if(seat5.isSelected()==true) {
 					if(nowSeatnum>=seatnum) {
 						seat5.setSelected(false);
-						s1.setWarningMessage("                            좌석 수를 초과 하였습니다.");
+						s1.setWarningMessage("                    좌석 수를 초과 하였습니다.");
 						s1.warningFrame();
 					}else {
 						nowSeatnum++;
@@ -623,7 +615,7 @@ public class Booking extends JFrame {
 				if(seat6.isSelected()==true) {
 					if(nowSeatnum>=seatnum) {
 						seat6.setSelected(false);
-						s1.setWarningMessage("                            좌석 수를 초과 하였습니다.");
+						s1.setWarningMessage("                    좌석 수를 초과 하였습니다.");
 						s1.warningFrame();
 					}else {
 						nowSeatnum++;
@@ -648,7 +640,7 @@ public class Booking extends JFrame {
 				if(seat7.isSelected()==true) {
 					if(nowSeatnum>=seatnum) {
 						seat7.setSelected(false);
-						s1.setWarningMessage("                            좌석 수를 초과 하였습니다.");
+						s1.setWarningMessage("                    좌석 수를 초과 하였습니다.");
 						s1.warningFrame();
 					}else {
 						nowSeatnum++;
@@ -673,7 +665,7 @@ public class Booking extends JFrame {
 				if(seat8.isSelected()==true) {
 					if(nowSeatnum>=seatnum) {
 						seat8.setSelected(false);
-						s1.setWarningMessage("                            좌석 수를 초과 하였습니다.");
+						s1.setWarningMessage("                    좌석 수를 초과 하였습니다.");
 						s1.warningFrame();
 					}else {
 						nowSeatnum++;
@@ -698,7 +690,7 @@ public class Booking extends JFrame {
 				if(seat9.isSelected()==true) {
 					if(nowSeatnum>=seatnum) {
 						seat9.setSelected(false);
-						s1.setWarningMessage("                            좌석 수를 초과 하였습니다.");
+						s1.setWarningMessage("                    좌석 수를 초과 하였습니다.");
 						s1.warningFrame();
 					}else {
 						nowSeatnum++;
@@ -722,13 +714,12 @@ public class Booking extends JFrame {
 				if(seat10.isSelected()==true) {
 					if(nowSeatnum>=seatnum) {
 						seat10.setSelected(false);
-						s1.setWarningMessage("                            좌석 수를 초과 하였습니다.");
+						s1.setWarningMessage("                    좌석 수를 초과 하였습니다.");
 						s1.warningFrame();
 					}else {
 						nowSeatnum++;
 						myseat[9] = 1;
 					}
-					
 				}else {
 					nowSeatnum--;
 					myseat[9] = 0;
@@ -740,7 +731,7 @@ public class Booking extends JFrame {
         	if(seat[i]==0) {
         		switch(i)
         		{
-        		case 0: seat1.setEnabled(false);  seat1.setBackground(Color.LIGHT_GRAY); break;
+        		case 0: seat1.setEnabled(false); seat1.setBackground(Color.LIGHT_GRAY); break;
         		case 1: seat2.setEnabled(false); seat2.setBackground(Color.LIGHT_GRAY); break;
         		case 2: seat3.setEnabled(false); seat3.setBackground(Color.LIGHT_GRAY); break;
         		case 3: seat4.setEnabled(false); seat4.setBackground(Color.LIGHT_GRAY); break;
@@ -752,27 +743,23 @@ public class Booking extends JFrame {
         		case 9: seat10.setEnabled(false); seat10.setBackground(Color.LIGHT_GRAY); break;
         		}
         	}
-
         }
-        
-        
 	}
 	public void setMain(TrainTest main) {
         this.main = main;
     }
 
 	public void updateDB() {
-		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			String url = "jdbc:mysql://localhost/seatdb?characterEncoding=UTF-8&serverTimezone=UTC";
-			Connection conn = DriverManager.getConnection(url, "root", "1125");
+			Connection conn = DriverManager.getConnection(url, "root", "mirim");
 			String sql = "select * from seat";
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			
 					sql = "UPDATE seat SET";
-					int a=0;
+					int a = 0;
 					
 					for(int i=0; i<myseat.length; i++) {
 						if(myseat[i]==1) {
@@ -793,7 +780,6 @@ public class Booking extends JFrame {
 							case 8: sql+=" seat9="+0; break;
 							case 9: sql+=" seat10="+0; break;
 							}
-							
 						}
 					}
 					sql+=" WHERE train='"+getTrain()+"'";
@@ -809,46 +795,13 @@ public class Booking extends JFrame {
 		     e.printStackTrace(); //오류 출력
 		}
 	}
-	
-	public void addDB() {
-		
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url = "jdbc:mysql://localhost/seatdb?characterEncoding=UTF-8&serverTimezone=UTC";
-			Connection conn = DriverManager.getConnection(url, "root", "1125");
-			Statement stmt = conn.createStatement();
-			String month="04";
-			String day="16";
-			for(int k=1;k<=7;k++) {
-				for (int i=1;i<=7;i++) {
-					if(i==k)continue;
-					for(int j=1; j<=9; j++) {
-						String sql = "insert into seat (train) values ("+k+i+month+day+j+");";
-						
-						ResultSet rs = stmt.executeQuery(sql);
-								
-						 int cnt = stmt.executeUpdate(sql);
-					}
-				}
-			}
-						  
-			//DB연결 종료
-			stmt.close();
-			conn.close();
-			stmt.close();
-		}catch (Exception e){
-		//에러
-		e.printStackTrace(); //오류 출력
-					
-		}
-	}
 		
 	public void getSeatDB() throws Exception {
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			String url = "jdbc:mysql://localhost/seatdb?characterEncoding=UTF-8&serverTimezone=UTC";
-			Connection conn = DriverManager.getConnection(url, "root", "1125");
+			Connection conn = DriverManager.getConnection(url, "root", "mirim");
 			Statement st = conn.createStatement();
 			String sql = "select * from seat";
 			ResultSet rs = st.executeQuery(sql);
@@ -889,7 +842,7 @@ public class Booking extends JFrame {
 		panel.setBackground(Color.WHITE);
 		
 		JLabel payEnd = new JLabel("결제가 완료 되었습니다.");//시간선택 출력
-		payEnd.setBounds(200, 20, 250, 80);//시간선택 위치, 크기 수정
+		payEnd.setBounds(200, 20, 280, 80);//시간선택 위치, 크기 수정
 		panel.add(payEnd);
 		payEnd.setFont(new Font("나눔바른고딕",Font.PLAIN,23));//문장 폰트 지정
 		
@@ -921,7 +874,7 @@ public class Booking extends JFrame {
 		}
 		
 		JLabel seatXY = new JLabel("좌석 위치: "+seatplace);//시간선택 출력
-		seatXY.setBounds(80, 240, 250, 80);//시간선택 위치, 크기 수정
+		seatXY.setBounds(80, 240, 290, 80);//시간선택 위치, 크기 수정
 		panel.add(seatXY);
 		seatXY.setFont(f1);//문장 폰트 지정
 		

@@ -2,8 +2,8 @@ package Train;
 
 public class test{
 	public static void main(String[] args) {
-		String month="04";
-		String day="16";
+		String month="03";
+		String day="11";
 		for(int k=1;k<=7;k++) {
 			for (int i=1;i<=7;i++) {
 				if(i==k)continue;

@@ -2,6 +2,10 @@ package Train;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.awt.BorderLayout;
@@ -35,6 +39,7 @@ public class Search extends JFrame {
 		private boolean check=false;
 		private int today_month; //오늘 달
 		private int today_day; //오늘 날짜
+		private int next_month; // 다음 달
     
 		Date date = new Date();
 		SimpleDateFormat sdf1 = new SimpleDateFormat("MM"); //월
@@ -102,14 +107,13 @@ public class Search extends JFrame {
 			JPanel panel = new JPanel();
 			placeButton(panel);
 			add(panel);
-			
+			checkTodayDB();
 			setVisible(true);
 		}
 		public void placeButton(JPanel panel) {
 			
 			today_month=Integer.parseInt(sdf1.format(date));
 			today_day=Integer.parseInt(sdf2.format(date));
-			int next_month;
 			if(today_month==12) {
 				next_month=1;
 			}else {
@@ -135,10 +139,9 @@ public class Search extends JFrame {
 			panel.setLayout(null);
 			
 			JLabel startL = new JLabel("출발지");
-			startL.setBounds(30, 20, 50, 80);
+			startL.setBounds(30, 20, 70, 80);
 			panel.add(startL);
 			startL.setFont(f1);
-			
 			
 			JComboBox startBox = new JComboBox(station);
 			startBox.setBounds(100, 40, 80, 30);
@@ -151,10 +154,8 @@ public class Search extends JFrame {
 				}
 			});
 			
-
-			
 			JLabel arrive = new JLabel("도착지");
-			arrive.setBounds(210, 20, 50, 80);
+			arrive.setBounds(210, 20, 70, 80);
 			panel.add(arrive);
 			arrive.setFont(f1);
 			
@@ -174,9 +175,7 @@ public class Search extends JFrame {
 			panel.add(date);
 			date.setFont(f1);
 			
-			
 		    JComboBox dayBox = new JComboBox(dayChoice1);
-			
 			JComboBox monthBox = new JComboBox(monthChoice);
 			monthBox.setBounds(100, 100, 80, 30);
 			panel.add(monthBox);
@@ -189,7 +188,6 @@ public class Search extends JFrame {
 				    		warningMessage= today_month+"월 "+today_day+"일 부터"+next_month+"월"+today_day+"일 까지만 예매가 가능합니다.";
 							warningFrame();
 				    }
-				    	
 				}
 			});
 			
@@ -201,7 +199,7 @@ public class Search extends JFrame {
 			    public void actionPerformed(ActionEvent e) {
 			    	setDay(dayBox.getSelectedIndex()+1);
 			    	if((month==2 && day>28)||((month==4||month==6||month==9||month==11)&&day>30)) {
-			    		warningMessage="                            올바르지 않은 날짜입니다";
+			    		warningMessage="                   올바르지 않은 날짜입니다";
 						warningFrame();
 			    	}else if((day>=today_day&&month==today_month)||(day<=today_day)&&month==next_month) {
 			    		
@@ -211,7 +209,6 @@ public class Search extends JFrame {
 					}
 				}
 			});
-			
 			
 			JLabel monthL = new JLabel("월");
 			monthL.setBounds(200, 80, 50, 80);
@@ -236,22 +233,22 @@ public class Search extends JFrame {
 					main.showBooking();
 				}else {
 					if(start.equals(arrival)==true) {
-						warningMessage="                       출발지와 도착지가 동일합니다";
+						warningMessage = "                   출발지와 도착지가 동일합니다";
 						warningFrame();
 					}else {
-						warningMessage= today_month+"월 "+today_day+"일 부터"+next_month+"월"+today_day+"일 까지만 예매가 가능합니다.";
+						warningMessage = today_month+"월 "+today_day+"일 부터"+next_month+"월"+today_day+"일 까지만 예매가 가능합니다.";
 						warningFrame();
 					}
-				}
-				
+				}	
 			}
 			});
 		    
 		}
 		public void makeDB(){
 			train="";
-	    	train+=changeStationToNum(start)+changeStationToNum(arrival);
-	    	
+			
+			train+=changeStationToNum(start)+changeStationToNum(arrival);
+			
 			if(month<10) {train+="0"+month;}
 			else {train+=month;}
 			
@@ -309,6 +306,87 @@ public class Search extends JFrame {
 	        warning.setVisible(true);
 	        check = true;
 			
+		}
+		
+		public void checkTodayDB() {
+			
+			try {
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				String url = "jdbc:mysql://localhost/seatdb?characterEncoding=UTF-8&serverTimezone=UTC";
+				Connection conn = DriverManager.getConnection(url, "root", "mirim");
+				Statement stmt = conn.createStatement();
+				String sql = "select month from date";
+				ResultSet rs = stmt.executeQuery(sql);
+				int month = 0; 
+				while(rs.next())
+					month = Integer.valueOf(rs.getInt(1));
+				//month = 5;
+				if(today_month!=month) {
+					sql = "Truncate seat";
+					int cnt = stmt.executeUpdate(sql);
+					addDB();
+				}
+//				for(int k=1;k<=7;k++) {
+//					for (int i=1;i<=7;i++) {
+//						if(i==k)continue;
+//						for(int j=1; j<=9; j++) {
+//							String sql = "insert into seat (train) values ("+k+i+month+day+j+");";
+//							
+//							ResultSet rs = stmt.executeQuery(sql);
+//									
+//							int cnt = stmt.executeUpdate(sql);
+//						}
+//					}
+//				}  
+				//DB연결 종료
+				stmt.close();
+				conn.close();
+				stmt.close();
+			}catch (Exception e){
+			//에러
+			e.printStackTrace(); //오류 출력
+						
+			}
+		}
+		
+		public void addDB() { //db추가
+			
+			try {
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				String url = "jdbc:mysql://localhost/seatdb?characterEncoding=UTF-8&serverTimezone=UTC";
+				Connection conn = DriverManager.getConnection(url, "root", "mirim");
+				Statement stmt = conn.createStatement();
+				String sqlDay=""; String sqlMonth=""; String sqlNextMonth="";
+				if(today_month<10) {sqlMonth = "0"+today_month;} // 자릿수맞추기
+				if(next_month<10) {sqlNextMonth = "0"+next_month;} //자릿수맞추기
+				for(int i=1; i<=31; i++) {
+					if (i<10) {sqlDay = "0"+i;}// 자릿수맞추기
+					else{sqlDay = Integer.toString(i);} // 자릿수맞추기
+					for(int j=1;j<=7;j++) {
+						for (int k=1;k<=7;k++) {
+							if(j==k)continue;
+							for(int l=1; l<=9; l++) {
+								String sql = "insert into seat (train) values ("+j+k+sqlMonth+sqlDay+l+")";
+								System.out.println(sql);
+								int cnt = stmt.executeUpdate(sql);
+								sql="insert into seat (train) values ("+j+k+sqlNextMonth+sqlDay+l+")";
+								cnt = stmt.executeUpdate(sql);
+								//System.out.println(sql);
+							}
+						}
+					} 
+				}
+				String sql = "UPDATE date SET month = " + today_month;
+				int cnt = stmt.executeUpdate(sql);
+				//DB연결 종료
+				stmt.close();
+				conn.close();
+				stmt.close();
+			}catch (Exception e){
+			//에러
+			e.printStackTrace(); //오류 출력
+						
+			}
 		}
 
 }

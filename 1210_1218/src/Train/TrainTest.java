@@ -5,7 +5,6 @@ public class TrainTest {
 	Search search;
 	
 	public static void main(String[] args){
-
 		TrainTest main = new TrainTest();
 		
 		main.search = new Search(); // 로그인창 보이기
@@ -16,7 +15,6 @@ public class TrainTest {
         main.booking.setMain(main);
         main.booking.BookingFrame(main.search);
         main.booking.dispose();
-        
 	}
 	
 	public void showBooking() {
